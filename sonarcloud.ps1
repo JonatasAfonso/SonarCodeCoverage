@@ -29,7 +29,8 @@ if (Test-Path $testOutputDir)
 
 dotnet restore
 dotnet build --configuration release
-dotnet test "./ProjetoTests/ProjetoTests.csproj" --collect:"XPlat Code Coverage" --results-directory TestResults/ --logger "trx;LogFileName=unittests.trx" --no-build --no-restore --configuration release -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+# dotnet test "./ProjetoTests/ProjetoTests.csproj" --collect:"XPlat Code Coverage" --results-directory TestResults/ --logger "trx;LogFileName=unittests.trx" --no-build --no-restore --configuration release -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory TestResults/ --logger "trx;LogFileName=unittests.trx" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
 # dotnet tool run dotnet-sonarscanner end /d:sonar.login="$sonarSecret"
 .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="$sonarSecret"
 
