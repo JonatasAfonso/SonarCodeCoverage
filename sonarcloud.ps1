@@ -21,17 +21,18 @@ if (Test-Path $testOutputDir)
 }
 
 Write-host "Ok ate 23"
-$version = Invoke-Gitversion
-$assemblyVer = $version.assemblyVersion 
+# $version = Invoke-Gitversion
+# $assemblyVer = $version.assemblyVersion 
 
 Write-host "Ok ate 27"
-$branch = git branch --show-current
+# $branch = git branch --show-current
 Write-host "Ok ate 29"
 Write-Host "branch is $branch"
 
 dotnet tool restore
 Write-host "Ok ate 33"
-dotnet tool run dotnet-sonarscanner begin /k:"JonatasAfonso_SonarCodeCoverage" /v:"$assemblyVer" /o:"alkampfergit-github" /d:sonar.login="$sonarSecret" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vstest.reportsPaths=TestResults/*.trx /d:sonar.cs.opencover.reportsPaths=TestResults/*/coverage.opencover.xml /d:sonar.coverage.exclusions="**Test*.cs" /d:sonar.branch.name="$branch"
+# dotnet tool run dotnet-sonarscanner begin /k:"JonatasAfonso_SonarCodeCoverage" /v:"$assemblyVer" /o:"alkampfergit-github" /d:sonar.login="$sonarSecret" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vstest.reportsPaths=TestResults/*.trx /d:sonar.cs.opencover.reportsPaths=TestResults/*/coverage.opencover.xml /d:sonar.coverage.exclusions="**Test*.cs" /d:sonar.branch.name="$branch"
+dotnet tool run dotnet-sonarscanner begin /k:"JonatasAfonso_SonarCodeCoverage" /o:"alkampfergit-github" /d:sonar.login="$sonarSecret" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vstest.reportsPaths=TestResults/*.trx /d:sonar.cs.opencover.reportsPaths=TestResults/*/coverage.opencover.xml /d:sonar.coverage.exclusions="**Test*.cs"
 Write-host "Ok ate 35"
 
 dotnet restore src
