@@ -7,8 +7,12 @@ Install-package BuildUtils -Confirm:$false -Scope CurrentUser -Force
 Import-Module BuildUtils
 
 $runningDirectory = Split-Path -Parent -Path $MyInvocation.MyCommand.Definition
+Write-host $runningDirectory 
 
 $testOutputDir = "$runningDirectory/TestResults"
+Write-host $testOutputDir
+
+Write-host "Ok ate 15"
 
 if (Test-Path $testOutputDir) 
 {
@@ -16,7 +20,7 @@ if (Test-Path $testOutputDir)
     Remove-Item $testOutputDir -Recurse -Force
 }
 
-
+Write-host "Ok ate 23"
 $version = Invoke-Gitversion
 $assemblyVer = $version.assemblyVersion 
 
